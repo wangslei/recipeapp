@@ -1,0 +1,49 @@
+<!doctype html>
+<html ng-app="myApp">
+
+<head>
+  <meta charset="utf-8">
+  <title>MEAN Auth</title>
+  <!-- styles -->
+  <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.4/yeti/bootstrap.min.css" rel="stylesheet">
+</head>
+  <nav class="navbar navbar-default" ng-controller="headerController">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/#/profile">Home</a>
+      </div>
+      <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="#">About</a></li>
+          <li class="dropdown" ng-show="{{loggedin}}">
+            <a href class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#/profile">Profile</a></li>
+              <li ng-click="logout()"><a href="#">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div><!-- /.container-fluid -->
+  </nav>
+  <div class="container-fluid">
+    <div ng-view></div>
+  </div>
+
+  <!-- scripts -->
+  <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-route.min.js"></script>
+  <script src="./main.js"></script>
+  <script src="./services.js"></script>
+  <script src="./controllers.js"></script>
+
+</body>
+</html>
