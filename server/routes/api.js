@@ -64,4 +64,24 @@ router.get('/recipe/getrecipes', function(req, res) {
   }
 });
 
+router.get('/user/getuseringreds', function(req, res) {
+  if(req.user) {
+    User.find({'username': req.user.username}, function (err, user) {
+      if(err) throw err;
+      res.status(200).json(user[0].available_ingredients);
+    });
+  }
+});
+
+router.post('/user/saveuseringreds', function(req, res) {
+  if(req.user) {
+    var user_ingreds = req.body;
+    newRecipe.save(function(err) {
+      if(err) throw err;
+      console.log('recipe saved!');
+      res.status(200).json({status: 'recipe created!'});
+    });
+  }
+});
+
 module.exports = router;

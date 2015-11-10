@@ -26,6 +26,11 @@ myApp.config(function ($routeProvider) {
     	controller: 'profileController',
     	access: {restricted: true}
     })
+    .when('/ingredients', {
+      templateUrl: 'partials/ingredients.html',
+      controller: 'ingredientsController',
+      access: {restricted: true}
+    })
     .otherwise({redirectTo: '/'});;
 });
 

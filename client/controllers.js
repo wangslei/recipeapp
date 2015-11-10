@@ -148,6 +148,33 @@ angular.module('myApp').controller('homeController',
     };
 }]);
 
+angular.module('myApp').controller('ingredientsController',
+  ['$scope', '$location', 'RecipeService', 
+  function ($scope, $location, RecipeService) {
+    console.log('in ingredientsController');
+    $scope.useringredients = [];
+    RecipeService.getUserIngredients().then(function (ingreds) {
+      // $scope.useringredients = ingreds;
+      console.log(ingreds);
+      console.log('get useringredients success');
+    });
+
+    $scope.addIngredient = function () {
+      var new_ing = {};
+      if(!$scope.ingredient || !$scope.ingredient.name || !$scope.ingredient.amount || !$scope.ingredient.unit) {
+        alert('please fill out ingredient properly');
+        return;
+      }
+      new_ing.name = $scope.ingredient.name;
+      new_ing.amount = $scope.ingredient.amount;
+      new_ing.unit = $scope.ingredient.unit;
+
+      RecipeService.saveUserIngredients($scope.useringredients).then(function () {
+        $location.path('/ingredients');
+      })
+    };
+}]);
+
 angular.module('myApp').controller('profileController',
   ['$scope', '$location', 'RecipeService',
   function ($scope, $location, RecipeService) {

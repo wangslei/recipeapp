@@ -131,9 +131,38 @@ angular.module('myApp').factory('RecipeService',
         return deferred.promise;
     }
 
+    function getUserIngredients() {
+      console.log('in getUserIngredients');
+      var deferred = $q.defer();
+      $http.get('/user/getuseringreds')
+        .success(function (ingreds) {
+          deferred.resolve(ingreds);
+        })
+        .error(function (data) {
+          deferred.reject();
+        });
+
+        return deferred.promise;
+    }
+    function saveUserIngredients(ingreds) {
+      console.log('in saveUserIngredients');
+      var deferred = $q.defer();
+      $http.post('/user/saveuseringreds', ingreds)
+        .success(function (data) {
+          deferred.resolve();
+        })
+        .error(function (data) {
+          deferred.reject();
+        });
+
+        return deferred.promise;
+    }
+
     // return available functions for use in controllers
     return ({
       saveRecipe: saveRecipe,
-      getRecipes: getRecipes
+      getRecipes: getRecipes,
+      getUserIngredients: getUserIngredients,
+      saveUserIngredients: saveUserIngredients
     });
 }]);
